@@ -57,7 +57,25 @@ public class LinkedList<T> {
             }
             this.aux = this.aux.getNext();
         }
+        this.aux = this.head;
         return false;
+    }
+    public void remove(T _data)   {
+        if(this.head.getData() == _data) {
+            this.head = this.head.getNext();
+            this.aux = this.head.getNext();
+            this.size -= 1;
+        }
+        while (this.aux.getNext() != null) {
+            if (this.aux.getNext().getData() == _data) {
+                this.aux.setNext(this.aux.getNext().getNext());
+                this.size -= 1;
+                this.aux = this.head;
+                return;
+            }
+            this.aux = this.aux.getNext();
+        }
+        this.aux = this.head;
     }
     public static void main(String args[]) {
         Node<Integer> N1 = new Node<Integer>(10);
@@ -76,5 +94,7 @@ public class LinkedList<T> {
         Lista.print();
         System.out.println("Search 50 : " + Lista.search(50));
         System.out.println("Search 25 : " + Lista.search(25));
+        Lista.remove(40);
+        Lista.print();
     }
 }
