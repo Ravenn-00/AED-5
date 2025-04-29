@@ -13,7 +13,7 @@ public class LinkedList<T> {
         this.aux = _head;
     }
     public boolean isEmpty()    {
-        return this.head == null;
+        return this.head == null || this.size == 0;
     }
     public int lenght() {
         while (this.aux.getNext() != null) {
@@ -42,16 +42,29 @@ public class LinkedList<T> {
         this.aux = null;
         this.size = 0;
     }
-    public boolean search(Node<T> _node)    {
-
-        return true;
+    public void print() {
+        for(int i = 0; i < this.size; i++){
+            System.out.println("Elemento " + (i+1) + ":  " + this.aux.getData());
+            this.aux = this.aux.getNext();
+        }
+        this.aux = this.head;
     }
-    public void main(String args[]) {
-        Node<Integer> N1 = new Node<Integer>();
-        Node<Integer> N2 = new Node<Integer>();
-        Node<Integer> N3 = new Node<Integer>();
-        Node<Integer> N4 = new Node<Integer>();
-        Node<Integer> N5 = new Node<Integer>();
+    public boolean search(T _data)    {
+        for(int i = 0; i < this.size; i++){
+            if(this.aux.getData() == _data) {
+                this.aux = this.head;
+                return true;
+            }
+            this.aux = this.aux.getNext();
+        }
+        return false;
+    }
+    public static void main(String args[]) {
+        Node<Integer> N1 = new Node<Integer>(10);
+        Node<Integer> N2 = new Node<Integer>(20);
+        Node<Integer> N3 = new Node<Integer>(30);
+        Node<Integer> N4 = new Node<Integer>(40);
+        Node<Integer> N5 = new Node<Integer>(50);
 
         N1.setNext(N2);
         N2.setNext(N3);
@@ -59,6 +72,9 @@ public class LinkedList<T> {
         N4.setNext(N5);
 
         LinkedList<Integer> Lista = new LinkedList<Integer>(N1);
-        System.out.println(Lista.lenght());
+        System.out.println("lenght : " + Lista.lenght());
+        Lista.print();
+        System.out.println("Search 50 : " + Lista.search(50));
+        System.out.println("Search 25 : " + Lista.search(25));
     }
 }
