@@ -29,6 +29,25 @@ public class LinkedList<T> {
         this.aux = _node;
         this.size += 1; 
     }
+    public void insertAt(int pos, Node<T> _node)    {
+        if(pos > this.size) {
+            System.out.println("Out of bounds");
+            return;
+        }
+        if(pos == 0)    {
+            _node.setNext(this.head);
+            this.head = _node;
+        }
+        for(int i = 1; i < this.size; i++){
+            if(pos == i)    {
+
+            }
+            System.out.println("Elemento " + (i+1) + ":  " + this.aux.getData());
+            this.aux = this.aux.getNext();
+            this.size += 1; 
+        }
+        this.aux = this.head;
+    }
     public void insertLast(Node<T> _node)  {
         while(this.aux.getNext() != null)   {
             this.aux = this.aux.getNext();
