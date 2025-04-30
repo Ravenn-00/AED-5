@@ -14,7 +14,7 @@ public class LinkedList<T> {
     }
     public int lenght() {
         int count = 0;
-        while (this.var.getNext() != null) {
+        while (this.var != null) {
             this.var = this.var.getNext();
             count += 1;
         }
@@ -35,7 +35,7 @@ public class LinkedList<T> {
             System.out.println("Empty list");
             return;
         }
-        while(this.var.getNext() != null)   {
+        while(this.var != null)   {
             this.var = this.var.getNext();
         }
         _node.setNext(null);
@@ -52,19 +52,19 @@ public class LinkedList<T> {
             return;
         }
         int i = 0;
-        while(this.var.getNext() != null)   {
+        while(this.var != null)   {
             i += 1;
             System.out.println("Elemento " + i + ":  " + this.var.getData());
             this.var = this.var.getNext();
         }
         this.var = this.head;
     }
-    public boolean search(T _data)    {
+    public boolean exist(T _data)    {
         if(this.isEmpty())   {
             System.out.println("Empty list");
             return false;
         }
-        while(this.var.getNext() != null)   {
+        while(this.var != null)   {
             if(this.var.getData() == _data) {
                 this.var = this.head;
                 return true;
@@ -73,6 +73,23 @@ public class LinkedList<T> {
         }
         this.var = this.head;
         return false;
+    }
+    public int search(T _data)    {
+        if(this.isEmpty())   {
+            System.out.println("Empty list");
+            return -1;
+        }
+        int i = 0;
+        while(this.var != null)   {
+            i += 1;
+            if(this.var.getData() == _data) {
+                this.var = this.head;
+                return i;
+            }
+            this.var = this.var.getNext();
+        }
+        this.var = this.head;
+        return -1;
     }
     public void remove(T _data)   {
         if(this.isEmpty())   {
