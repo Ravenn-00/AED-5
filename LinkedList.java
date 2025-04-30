@@ -1,6 +1,6 @@
 public class LinkedList<T> {
-    Node<T> head;
-    Node<T> var;
+    private Node<T> head;
+    private Node<T> var;
     public LinkedList() {
         this.head = null;
         this.var = null;
@@ -12,20 +12,21 @@ public class LinkedList<T> {
     public boolean isEmpty()    {
         return this.head == null;
     }
-    public int lenght() {
+    public void lenght() {
         int count = 0;
         while (this.var != null) {
             this.var = this.var.getNext();
             count += 1;
         }
         this.var = this.head;
-        return count;
+        System.out.println("lenght  " + count);;
     }
     public void insertFirst(Node<T> _node)  {
         if(this.isEmpty())   {
             System.out.println("Empty list");
             return;
         }
+        System.out.println("insert first:  " + _node.getData());
         _node.setNext(this.head);
         this.head = _node;
         this.var = _node;
@@ -35,14 +36,15 @@ public class LinkedList<T> {
             System.out.println("Empty list");
             return;
         }
-        while(this.var != null)   {
+        System.out.println("insert last:  " + _node.getData());
+        while(this.var.getNext() != null)   {
             this.var = this.var.getNext();
         }
-        _node.setNext(null);
-        this.var.getNext().setNext(_node);
+        this.var.setNext(_node);
         this.var = this.head;
     }
     public void destroy()   {
+        System.out.println("destroy list");
         this.head = null;
         this.var = null;
     }
@@ -67,11 +69,13 @@ public class LinkedList<T> {
         while(this.var != null)   {
             if(this.var.getData() == _data) {
                 this.var = this.head;
+                System.out.println("element:  " + _data + " exists");
                 return true;
             }
             this.var = this.var.getNext();
         }
         this.var = this.head;
+        System.out.println("element:  " + _data + " doenst exists");
         return false;
     }
     public int search(T _data)    {
@@ -84,11 +88,13 @@ public class LinkedList<T> {
             i += 1;
             if(this.var.getData() == _data) {
                 this.var = this.head;
+                System.out.println("element:  " + _data + " search at " + i);
                 return i;
             }
             this.var = this.var.getNext();
         }
         this.var = this.head;
+        System.out.println("element:  " + _data + " search failed");
         return -1;
     }
     public void remove(T _data)   {
@@ -99,15 +105,19 @@ public class LinkedList<T> {
         if(this.head.getData() == _data) {
             this.head = this.head.getNext();
             this.var = this.head.getNext();
+            System.out.println("remove " + _data);
+            return;
         }
         while (this.var.getNext() != null) {
             if (this.var.getNext().getData() == _data) {
                 this.var.setNext(this.var.getNext().getNext());
                 this.var = this.head;
+                System.out.println("remove " + _data);
                 return;
             }
             this.var = this.var.getNext();
         }
+        System.out.println("remove, doens exist");
         this.var = this.head;
     }
     public static void main(String args[]) {
@@ -123,11 +133,20 @@ public class LinkedList<T> {
         N4.setNext(N5);
 
         LinkedList<Integer> Lista = new LinkedList<Integer>(N1);
-        System.out.println("lenght : " + Lista.lenght());
+        Lista.lenght();
         Lista.print();
-        System.out.println("Search 50 : " + Lista.search(50));
-        System.out.println("Search 25 : " + Lista.search(25));
+        Lista.search(50);
+        Lista.search(25);
+        Lista.exist(50);
+        Lista.exist(25);
         Lista.remove(40);
         Lista.print();
+        Lista.insertFirst(new Node<Integer>(05));
+        Lista.print();
+        Lista.insertLast(new Node<Integer>(60));
+        Lista.print();
+        Lista.lenght();
+        Lista.destroy();
+        Lista.lenght();
     }
 }
