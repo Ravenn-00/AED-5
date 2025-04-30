@@ -54,10 +54,11 @@ public class LinkedList<T> {
             return;
         }
         int i = 0;
+        System.out.println("printing.........");
         while(this.var != null)   {
-            i += 1;
             System.out.println("Elemento " + i + ":  " + this.var.getData());
             this.var = this.var.getNext();
+            i += 1;
         }
         this.var = this.head;
     }
@@ -69,13 +70,13 @@ public class LinkedList<T> {
         while(this.var != null)   {
             if(this.var.getData() == _data) {
                 this.var = this.head;
-                System.out.println("element:  " + _data + " exists");
+                System.out.println(_data + " exists");
                 return true;
             }
             this.var = this.var.getNext();
         }
         this.var = this.head;
-        System.out.println("element:  " + _data + " doenst exists");
+        System.out.println(_data + " doenst exists");
         return false;
     }
     public int search(T _data)    {
@@ -85,16 +86,16 @@ public class LinkedList<T> {
         }
         int i = 0;
         while(this.var != null)   {
-            i += 1;
             if(this.var.getData() == _data) {
                 this.var = this.head;
-                System.out.println("element:  " + _data + " search found at " + i);
+                System.out.println("search "+ _data + " found at " + i);
                 return i;
             }
+            i += 1;
             this.var = this.var.getNext();
         }
         this.var = this.head;
-        System.out.println("element:  " + _data + " search failed");
+        System.out.println("search " + _data + " failed");
         return -1;
     }
     public void remove(T _data)   {
@@ -137,6 +138,7 @@ public class LinkedList<T> {
         Lista.print();
         Lista.search(50);
         Lista.search(25);
+        
         Lista.exist(50);
         Lista.exist(25);
         Lista.remove(40);
