@@ -1,100 +1,97 @@
 public class LinkedList<T> {
     Node<T> head;
-    int size;
-    Node<T> aux;
+    Node<T> var;
     public LinkedList() {
         this.head = null;
-        this.size = 0;
-        this.aux = null;
+        this.var = null;
     }
     public LinkedList(Node<T> _head) {
         this.head = _head;
-        this.size = 1;
-        this.aux = _head;
+        this.var = _head;
     }
     public boolean isEmpty()    {
-        return this.head == null || this.size == 0;
+        return this.head == null;
     }
     public int lenght() {
-        while (this.aux.getNext() != null) {
-            size += 1;
-            this.aux = this.aux.getNext();
+        int count = 0;
+        while (this.var.getNext() != null) {
+            this.var = this.var.getNext();
+            count += 1;
         }
-        this.aux = this.head;
-        return size;
+        this.var = this.head;
+        return count;
     }
     public void insertFirst(Node<T> _node)  {
-        _node.setNext(this.head);
-        this.head = _node;
-        this.aux = _node;
-        this.size += 1; 
-    }
-    public void insertAt(int pos, Node<T> _node)    {
-        if(pos > this.size) {
-            System.out.println("Out of bounds");
+        if(this.isEmpty())   {
+            System.out.println("Empty list");
             return;
         }
-        if(pos == 0)    {
-            _node.setNext(this.head);
-            this.head = _node;
-        }
-        for(int i = 1; i < this.size; i++){
-            if(pos == i)    {
-
-            }
-            System.out.println("Elemento " + (i+1) + ":  " + this.aux.getData());
-            this.aux = this.aux.getNext();
-            this.size += 1; 
-        }
-        this.aux = this.head;
+        _node.setNext(this.head);
+        this.head = _node;
+        this.var = _node;
     }
     public void insertLast(Node<T> _node)  {
-        while(this.aux.getNext() != null)   {
-            this.aux = this.aux.getNext();
+        if(this.isEmpty())   {
+            System.out.println("Empty list");
+            return;
+        }
+        while(this.var.getNext() != null)   {
+            this.var = this.var.getNext();
         }
         _node.setNext(null);
-        this.aux.getNext().setNext(_node);
-        this.aux = this.head;
+        this.var.getNext().setNext(_node);
+        this.var = this.head;
     }
     public void destroy()   {
         this.head = null;
-        this.aux = null;
-        this.size = 0;
+        this.var = null;
     }
     public void print() {
-        for(int i = 0; i < this.size; i++){
-            System.out.println("Elemento " + (i+1) + ":  " + this.aux.getData());
-            this.aux = this.aux.getNext();
+        if(this.isEmpty())   {
+            System.out.println("Empty list");
+            return;
         }
-        this.aux = this.head;
+        int i = 0;
+        while(this.var.getNext() != null)   {
+            i += 1;
+            System.out.println("Elemento " + i + ":  " + this.var.getData());
+            this.var = this.var.getNext();
+        }
+        this.var = this.head;
     }
     public boolean search(T _data)    {
-        for(int i = 0; i < this.size; i++){
-            if(this.aux.getData() == _data) {
-                this.aux = this.head;
+        if(this.isEmpty())   {
+            System.out.println("Empty list");
+            return false;
+        }
+        while(this.var.getNext() != null)   {
+            if(this.var.getData() == _data) {
+                this.var = this.head;
                 return true;
             }
-            this.aux = this.aux.getNext();
+            this.var = this.var.getNext();
         }
-        this.aux = this.head;
+        this.var = this.head;
         return false;
     }
     public void remove(T _data)   {
+        if(this.isEmpty())   {
+            System.out.println("Empty list");
+            return;
+        }
         if(this.head.getData() == _data) {
             this.head = this.head.getNext();
-            this.aux = this.head.getNext();
-            this.size -= 1;
+            this.var = this.head.getNext();
         }
-        while (this.aux.getNext() != null) {
-            if (this.aux.getNext().getData() == _data) {
-                this.aux.setNext(this.aux.getNext().getNext());
-                this.size -= 1;
-                this.aux = this.head;
+        while (this.var.getNext() != null) {
+            if (this.var.getNext().getData() == _data) {
+                this.var.setNext(this.var.getNext().getNext());
+                this.var = this.head;
                 return;
             }
-            this.aux = this.aux.getNext();
+            this.var = this.var.getNext();
         }
-        this.aux = this.head;
+        this.var = this.head;
     }
     public static void main(String args[]) {
         Node<Integer> N1 = new Node<Integer>(10);
