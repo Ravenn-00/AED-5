@@ -88,7 +88,7 @@ public class LinkedList<T> {
             i += 1;
             if(this.var.getData() == _data) {
                 this.var = this.head;
-                System.out.println("element:  " + _data + " search at " + i);
+                System.out.println("element:  " + _data + " search found at " + i);
                 return i;
             }
             this.var = this.var.getNext();
