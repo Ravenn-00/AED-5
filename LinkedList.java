@@ -98,6 +98,23 @@ public class LinkedList<T> {
         System.out.println("search " + _data + " failed");
         return -1;
     }
+    public void reverse() {
+        if (this.isEmpty()) {
+            System.out.println("Empty list");
+            return;
+        }    
+        Node<T> prev = null;
+        Node<T> next = null;    
+        while (this.var != null) {
+            next = this.var.getNext();
+            this.var.setNext(prev);
+            prev = this.var;
+            this.var = next;
+        }    
+        this.head = prev;
+        this.var = this.head;
+        System.out.println("List reversed");
+    }
     public void remove(T _data)   {
         if(this.isEmpty())   {
             System.out.println("Empty list");
@@ -148,6 +165,8 @@ public class LinkedList<T> {
         Lista.insertLast(new Node<Integer>(60));
         Lista.print();
         Lista.lenght();
+        Lista.reverse();
+        Lista.print();
         Lista.destroy();
         Lista.lenght();
     }

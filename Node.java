@@ -26,3 +26,4 @@ public class Node<T> {
         this.data = _data;
     }
 }
+
