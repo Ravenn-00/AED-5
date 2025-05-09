@@ -12,7 +12,7 @@ public class LinkedList<T> {
     public boolean isEmpty()    {
         return this.head == null;
     }
-    public void lenght() {
+    public int lenght() {
         int count = 0;
         while (this.var != null) {
             this.var = this.var.getNext();
@@ -20,6 +20,7 @@ public class LinkedList<T> {
         }
         this.var = this.head;
         System.out.println("lenght  " + count);;
+        return count;
     }
     public void insertFirst(Node<T> _node)  {
         if(this.isEmpty())   {
